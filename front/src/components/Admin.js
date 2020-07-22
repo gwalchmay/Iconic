@@ -10,6 +10,8 @@ function Admin() {
     const [newScene, setNewScene] = useState({ picture_id: 1 });
     const [newUser, setNewUser] = useState();
     const [reload, setReload] = useState(false);
+    const [file, setFile] = useState(null);
+    const [filePreview, setFilePreview] = useState(null);
 
     const handleNewHero = (e) => {
         const { name, value } = e.target;
@@ -34,6 +36,10 @@ function Admin() {
         }));
     };
 
+    const handleFile = (e) => {
+        setFile(e.target.files[0]);
+        setFilePreview(URL.createObjectURL(e.target.files[0]));
+    };
 
 
     function createNewHero(e) {
@@ -53,17 +59,27 @@ function Admin() {
 
     function createNewHero(e) {
         e.preventDefault();
-        axios.post(`http://localhost:8000/api/post`, newScene)
-            .then((res) => res.data)
-            .then((data) => {
-                alert(`New post : ${data.title}`);
-                setNewScene()
-                setReload(!reload)
-            })
-            .catch((e) => {
-                console.error(e);
-                alert(`Erreur : ${e.message}`);
-            });
+        if (file.type !== 'image/jpeg' && file.type !== 'image/jpg' && file.type !== 'image/png') {
+            alert('Only jpeg/jpg and png are allowed');
+        } else {
+            const data = new FormData();
+            data.append('file', file);
+            axios.post(`${API_URL}/api/upload/`, data)
+                .then((res) => res.data)
+                .then((res) => {
+                    const newScene2 = { ...newScene, picture_id: res.id };
+                    return newScene2;
+                })
+                .then((newScene) => axios.post(`${API_URL}/api/post`, newScene)
+                    .then((res) => res.data)
+                    .then(() => {
+                        alert('Scene added !');
+                    }))
+                .catch((e) => {
+                    console.error(e);
+                    alert(`Error : ${e.message}`);
+                });
+        }
     }
 
     function createNewUser(e) {
@@ -105,7 +121,7 @@ function Admin() {
                 </div>
                 <div className='adminColumn'>
                     Add a new scene:
-                    <form className='adminForm' onSubmit={createNewHero}>
+                    <form className='adminForm' onSubmit={createNewHero} encType="multipart/form-data">
                         <input type="text" name="title" onChange={handleNewScene} placeholder='Title' />
                         <input type="text" name="shortD" onChange={handleNewScene} placeholder='Short description' />
                         <input type="text" name="longD" onChange={handleNewScene} placeholder='Long description' />
@@ -151,6 +167,8 @@ function Admin() {
                         </select>
                         <input type="text" name="comic" onChange={handleNewScene} placeholder='Comic title and number' />
                         <input type="date" name="date" onChange={handleNewScene} />
+                        <input type="file" onChange={handleFile} />
+                        <img src={filePreview} alt="uploaded product" />
                         <button type='submit'>Create</button>
                     </form>
                 </div>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Home from './components/Home.js';
 import Heroes from './components/Heroes.js';
+import Ages from './components/Ages.js';
 import Admin from './components/Admin.js';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path="/heroes">
             <Heroes />
+          </Route>
+          <Route path="/ages">
+            <Ages />
           </Route>
           <Route path="/admin">
             <Admin />

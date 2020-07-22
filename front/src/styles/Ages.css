@@ -1,0 +1,24 @@
+.agesFlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ageContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    
+}
+
+.ageContainer a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ageContainer a:visited {
+    text-decoration: none;
+    color: black;
+}
