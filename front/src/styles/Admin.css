@@ -1,0 +1,16 @@
+.adminBg{
+    width: 100%;
+    text-align: center;
+}
+
+.adminFlexContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.adminColumn {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,7 @@
+.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.MuiPaper-elevation0{
+    background-color: #ED1D24;
+    max-width: 240px;
+    display: flex;
+    position: relative;
+    height: 100vh;
+}
