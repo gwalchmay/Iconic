@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import loading from '../images/loading.gif';
 import '../styles/SceneFull.css';
 
 function SceneFull() {
@@ -32,7 +33,9 @@ function SceneFull() {
         )
     } else {
         return (
-            <h1>Loading</h1>
+            <div className='sceneFullLoading'>
+                <img src={loading} alt='loading animation' className='sceneFullLoadingIcon' />
+            </div>
         )
     }
 }
