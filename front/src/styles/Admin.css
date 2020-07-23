@@ -1,0 +1,33 @@
+.adminBg {
+    width: 100%;
+    text-align: center;
+}
+
+.adminFlexContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.adminColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.adminForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.imagePreview{
+    max-width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+    .adminFlexContainer{
+        flex-direction: column;
+        width: 95%;
+        align-items: center;
+    }
+}

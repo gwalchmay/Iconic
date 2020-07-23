@@ -1,0 +1,12 @@
+.appFlexContainer{
+  display: flex;
+  flex-direction: row;
+  background-color: #F2F2F2;
+}
+
+@media screen and (max-width: 768px) {
+  .appFlexContainer{
+    flex-direction: column;
+    height: 100vh;
+  }
+}

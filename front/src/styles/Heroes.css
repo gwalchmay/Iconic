@@ -1,0 +1,39 @@
+.heroesContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.heroesList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.firstAfterInitial {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.afterFirstAfterInitial {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heroesListItem{
+    align-items: center;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: gray;
+}

@@ -1,0 +1,45 @@
+.agesFlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.ageContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 45%;
+    border: 2px solid black;
+    margin: 10px;
+    box-shadow: 10px 5px 5px grey;
+}
+
+.ageContainer a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.ageContainer a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.agesText {
+    margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .agesFlexContainer{
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .ageContainer {
+        max-width: 100%;
+        width: 93%;
+    }
+}
