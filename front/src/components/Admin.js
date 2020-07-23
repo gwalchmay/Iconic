@@ -5,6 +5,8 @@ import { logout } from '../utils/login';
 import { useHistory } from 'react-router-dom';
 
 const APP_URL = process.env.REACT_APP_API_URL;
+const TOKEN_KEY = 'jwt';
+const token = localStorage.getItem(TOKEN_KEY);
 
 function Admin() {
     const [newHero, setNewHero] = useState();
@@ -47,7 +49,11 @@ function Admin() {
 
     function createNewHero(e) {
         e.preventDefault();
-        axios.post(`${APP_URL}/api/hero`, newHero)
+        axios.post(`${APP_URL}/api/hero`, newHero, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            },
+        })
             .then((res) => res.data)
             .then((data) => {
                 alert(`New hero : ${data.name}`);
@@ -60,20 +66,28 @@ function Admin() {
             });
     }
 
-    function createNewHero(e) {
+    function createNewScene(e) {
         e.preventDefault();
         if (file.type !== 'image/jpeg' && file.type !== 'image/jpg' && file.type !== 'image/png') {
             alert('Only jpeg/jpg and png are allowed');
         } else {
             const data = new FormData();
             data.append('file', file);
-            axios.post(`${APP_URL}/api/upload/`, data)
+            axios.post(`${APP_URL}/api/upload/`, data, {
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            })
                 .then((res) => res.data)
                 .then((res) => {
                     const newScene2 = { ...newScene, picture_id: res.id };
                     return newScene2;
                 })
-                .then((newScene) => axios.post(`${APP_URL}/api/post`, newScene)
+                .then((newScene) => axios.post(`${APP_URL}/api/post`, newScene, {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                })
                     .then((res) => res.data)
                     .then(() => {
                         alert('Scene added !');
@@ -87,11 +101,14 @@ function Admin() {
 
     function createNewUser(e) {
         e.preventDefault();
-        axios.post(`${APP_URL}/api/auth/newuser`, newUser)
+        axios.post(`${APP_URL}/api/auth/newuser`, newUser, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            },
+        })
             .then((res) => res.data)
             .then((data) => {
-                alert(`New user : ${data.username}`);
-                setNewScene()
+                alert(`New user added`);
                 setReload(!reload)
             })
             .catch((e) => {
@@ -127,7 +144,7 @@ function Admin() {
                 </div>
                 <div className='adminColumn'>
                     Add a new scene:
-                    <form className='adminForm' onSubmit={createNewHero} encType="multipart/form-data">
+                    <form className='adminForm' onSubmit={createNewScene} encType="multipart/form-data">
                         <input type="text" name="title" onChange={handleNewScene} placeholder='Title' />
                         <input type="text" name="shortD" onChange={handleNewScene} placeholder='Short description' />
                         <input type="text" name="longD" onChange={handleNewScene} placeholder='Long description' />
@@ -145,7 +162,7 @@ function Admin() {
                                 </option>
                             ))};
                         </select>
-                        {newScene.hero_id ? <select name="hero_id2" id="hero-select" onChange={handleNewScene}>
+                        {/* {newScene.hero_id ? <select name="hero_id2" id="hero-select" onChange={handleNewScene}>
                             <option value="">Choose a hero</option>
                             {heroes.map((hero) => (
                                 <option value={hero.id}>
@@ -164,7 +181,7 @@ function Admin() {
                             ))}
                         </select>
                             : <></>
-                        }
+                        } */}
                         <select name="category" id="category-select" onChange={handleNewScene}>
                             <option value="">Choose a category</option>
                             <option value="badass">Badass</option>
@@ -174,7 +191,7 @@ function Admin() {
                         <input type="text" name="comic" onChange={handleNewScene} placeholder='Comic title and number' />
                         <input type="date" name="date" onChange={handleNewScene} />
                         <input type="file" onChange={handleFile} />
-                        <img src={filePreview} alt="uploaded product" />
+                        <img src={filePreview} alt="uploaded page" className='imagePreview' />
                         <button type='submit'>Create</button>
                     </form>
                 </div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Modern() {
     return (
         <div className='ageContainer'>
-            <Link to='/age/modern'>
+            <Link to='age/modern'>
                 <img src={modern} alt='Watchmen #1' />
                 <h2>The Modern Age</h2>
                 <p className='agesText'>The Modern Age of Comic Books is generally considered to have <b>begun in the mid-1980s</b> and continues through the

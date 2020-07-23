@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import travaux from '../images/travaux.jpg';
+import '../styles/Heroes.css';
 
 const APP_URL = process.env.REACT_APP_API_URL;
 
@@ -18,17 +20,18 @@ function Heroes() {
     }, []);
 
     return (
-        <div>
+        <div className='heroesContainer'>
+            <img src={travaux} alt='en travaux' style={{width : 400 }}/>
             {heroes.map((hero) => {
                 if (hero.name.charAt(0) !== previousChar) {
                     previousChar = hero.name.charAt(0);
                     return (
-                        <div>
+                        <div className="heroesList">
                             <div className="initial">
                                 {previousChar}
                             </div>
                             <ul className="firstAfterInitial">
-                                <li key={hero.id}><Link to={'/heroes/' + hero.id}>{hero.name}</Link></li>
+                                <li key={hero.id}><Link to={'/heroes/' + hero.id} className='heroesListItem'>{hero.name}</Link></li>
                             </ul>
                         </div>
                     )
@@ -36,8 +39,8 @@ function Heroes() {
                 else {
                     return (
                         <div>
-                            <ul>
-                                <li key={hero.id}><Link to={'/heroes/' + hero.id}>{hero.name}</Link></li>
+                            <ul className="afterFirstAfterInitial">
+                                <li key={hero.id}><Link to={'/heroes/' + hero.id} className='heroesListItem'>{hero.name}</Link></li>
                             </ul>
                         </div>
                     )

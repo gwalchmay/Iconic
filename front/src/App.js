@@ -7,6 +7,7 @@ import Heroes from './components/Heroes.js';
 import Ages from './components/Ages.js';
 import SceneFull from './components/SceneFull.js';
 import Scenes from './components/Scenes.js';
+import ScenesAge from './components/ScenesAge.js';
 import Login from './components/Login.js';
 import Admin from './components/Admin.js';
 import PrivateRoute from './components/PrivateRoute.js';
@@ -24,6 +25,7 @@ function App() {
           </Route>
           <Route path="/scenes/:tag" component={Scenes} />
           <Route path="/scene/:id" component={SceneFull} />
+          <Route exact path="/age/:age" component={ScenesAge} />
           <Route path="/heroes">
             <Heroes />
           </Route>
