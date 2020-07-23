@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const APP_URL = process.env.REACT_APP_API_URL;
 
 function Heroes() {
     const [heroes, setHeroes] = useState([]);
@@ -9,7 +10,7 @@ function Heroes() {
 
     useEffect(() => {
         function getHeroes() {
-            axios.get(`http://localhost:8000/api/hero`)
+            axios.get(`${APP_URL}/api/hero`)
                 .then((res) => res.data)
                 .then((data) => { setHeroes(data); });
         }

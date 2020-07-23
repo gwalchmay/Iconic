@@ -4,6 +4,8 @@ import axios from 'axios';
 import loading from '../images/loading.gif';
 import '../styles/SceneFull.css';
 
+const APP_URL = process.env.REACT_APP_API_URL;
+
 function SceneFull() {
     const { id } = useParams();
     const [scene, setScene] = useState();
@@ -12,7 +14,7 @@ function SceneFull() {
 
     useEffect(() => {
         function getScene() {
-            axios.get(`http://localhost:8000/api/post/${id}`)
+            axios.get(`${APP_URL}/api/post/${id}`)
                 .then((res) => { setScene(res.data) });
         }
         getScene();
@@ -22,9 +24,9 @@ function SceneFull() {
     if (scene !== undefined) {
         return (
             <div className='sceneFullContainer'>
-                {showModal ? <div className='sceneFullModalContainer' onClick={() => setShowModal(false)} ><img src={`http://localhost:8000/images/${scene.filename}`} className='sceneFullModal' /></div> : null}
+                {showModal ? <div className='sceneFullModalContainer' onClick={() => setShowModal(false)} ><img src={`${APP_URL}/images/${scene.filename}`} className='sceneFullModal' /></div> : null}
                 <div className='sceneFullCard'>
-                    <img src={`http://localhost:8000/images/${scene.filename}`} className='sceneFullImage' onClick={() => setShowModal(true)} />
+                    <img src={`${APP_URL}/images/${scene.filename}`} className='sceneFullImage' onClick={() => setShowModal(true)} />
                     <h2>{scene.title}</h2>
                     <p>Issue: {scene.comic} from {(new Date(scene.date)).toLocaleDateString('en-EN', { month: 'long', year: 'numeric' })}</p>
                     <p>{scene.longD}</p>

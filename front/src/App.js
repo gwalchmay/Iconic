@@ -7,7 +7,9 @@ import Heroes from './components/Heroes.js';
 import Ages from './components/Ages.js';
 import SceneFull from './components/SceneFull.js';
 import Scenes from './components/Scenes.js';
+import Login from './components/Login.js';
 import Admin from './components/Admin.js';
+import PrivateRoute from './components/PrivateRoute.js';
 
 function App() {
   return (
@@ -26,9 +28,10 @@ function App() {
           <Route path="/ages">
             <Ages />
           </Route>
-          <Route path="/admin">
-            <Admin />
+          <Route path="/login">
+            <Login />
           </Route>
+          <PrivateRoute component={Admin} path="/admin" exact />
         </Switch>
       </div>
     </Router>

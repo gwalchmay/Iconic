@@ -4,6 +4,8 @@ import axios from 'axios';
 import Scene from './Scene';
 import '../styles/Home.css';
 
+const APP_URL = process.env.REACT_APP_API_URL;
+
 function Scenes() {
     const [scenes, setScenes] = useState([]);
     const [heroes, setHeroes] = useState([]);
@@ -13,8 +15,8 @@ function Scenes() {
     useEffect(() => {
         function getScenes() {
             axios.all([
-                axios.get(`http://localhost:8000/api/post/tag/${tag}`),
-                axios.get(`http://localhost:8000/api/hero`)])
+                axios.get(`${APP_URL}/api/post/tag/${tag}`),
+                axios.get(`${APP_URL}/api/hero`)])
                 .then((res) => { setScenes(res[0].data); setHeroes(res[1].data); });
         }
         getScenes();

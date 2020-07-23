@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Home.css';
 import { Link } from 'react-router-dom';
 
-
+const APP_URL = process.env.REACT_APP_API_URL;
 
 function Scene(props) {
     const scene = props
@@ -16,7 +16,7 @@ function Scene(props) {
                 </Link>
                 <p>Tag: <Link to={`/scenes/${scene.props.category}`}>{scene.props.category}</Link> </p>
             </div>
-            <img src={`http://localhost:8000/images/${scene.props.filename}`} className='homeSceneImage' />
+            <img src={`${APP_URL}/images/${scene.props.filename}`} className='homeSceneImage' />
         </div >
     )
 }

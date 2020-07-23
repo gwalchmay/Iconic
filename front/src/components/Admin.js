@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Admin.css';
+import { logout } from '../utils/login';
+import { useHistory } from 'react-router-dom';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const APP_URL = process.env.REACT_APP_API_URL;
 
 function Admin() {
     const [newHero, setNewHero] = useState();
@@ -12,6 +14,7 @@ function Admin() {
     const [reload, setReload] = useState(false);
     const [file, setFile] = useState(null);
     const [filePreview, setFilePreview] = useState(null);
+    const history = useHistory();
 
     const handleNewHero = (e) => {
         const { name, value } = e.target;
@@ -44,7 +47,7 @@ function Admin() {
 
     function createNewHero(e) {
         e.preventDefault();
-        axios.post(`http://localhost:8000/api/hero`, newHero)
+        axios.post(`${APP_URL}/api/hero`, newHero)
             .then((res) => res.data)
             .then((data) => {
                 alert(`New hero : ${data.name}`);
@@ -64,13 +67,13 @@ function Admin() {
         } else {
             const data = new FormData();
             data.append('file', file);
-            axios.post(`${API_URL}/api/upload/`, data)
+            axios.post(`${APP_URL}/api/upload/`, data)
                 .then((res) => res.data)
                 .then((res) => {
                     const newScene2 = { ...newScene, picture_id: res.id };
                     return newScene2;
                 })
-                .then((newScene) => axios.post(`${API_URL}/api/post`, newScene)
+                .then((newScene) => axios.post(`${APP_URL}/api/post`, newScene)
                     .then((res) => res.data)
                     .then(() => {
                         alert('Scene added !');
@@ -84,7 +87,7 @@ function Admin() {
 
     function createNewUser(e) {
         e.preventDefault();
-        axios.post(`http://localhost:8000/api/user`, newUser)
+        axios.post(`${APP_URL}/api/auth/newuser`, newUser)
             .then((res) => res.data)
             .then((data) => {
                 alert(`New user : ${data.username}`);
@@ -99,7 +102,7 @@ function Admin() {
 
     useEffect(() => {
         function getHeroes() {
-            axios.get(`http://localhost:8000/api/hero`)
+            axios.get(`${APP_URL}/api/hero`)
                 .then((res) => res.data)
                 .then((data) => { setHeroes(data); });
         }
@@ -110,6 +113,9 @@ function Admin() {
 
     return (
         <div className='adminBg'>
+            <button className="deconnexion " type="button" onClick={() => { logout(); history.push('/'); }}>
+                Log Out
+            </button>
             <h1>Admin</h1>
             <div className='adminFlexContainer'>
                 <div className='adminColumn'>
