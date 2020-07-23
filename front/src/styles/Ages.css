@@ -27,6 +27,19 @@
     text-decoration: none;
     color: black;
 }
-.agesText{
+
+.agesText {
     margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .agesFlexContainer{
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .ageContainer {
+        max-width: 100%;
+        width: 93%;
+    }
 }

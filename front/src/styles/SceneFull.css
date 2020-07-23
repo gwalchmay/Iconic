@@ -71,6 +71,12 @@
     z-index: 2;
 }
 
-.sceneFullImage{
+.sceneFullImage {
     margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .sceneFullModal {
+        width: 100%;
+    }
 }

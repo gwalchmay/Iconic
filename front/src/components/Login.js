@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { login } from '../utils/login';
+import '../styles/Login.css';
 
 const APP_URL = process.env.REACT_APP_API_URL;
 
@@ -32,14 +33,14 @@ function Login() {
             .catch((err) => alert(err.response.data.message));
     };
     return (
-        <div>
+        <div className='loginContainer'>
             {redirect && <Redirect to="/admin" />}
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label for='Username'>Username</label>
-                <input type='text' name='username' id='Username' onChange={handleChange}/>
-                <label for='Password'>Password</label>
-                <input type='password' name='password' id='Password' onChange={handleChange}/>
+            <form onSubmit={handleSubmit} className='loginForm'>
+                <label for='Username'>Username:</label>
+                <input type='text' name='username' id='Username' onChange={handleChange} />
+                <label for='Password'>Password:</label>
+                <input type='password' name='password' id='Password' onChange={handleChange} />
                 <button type="submit">Login</button>
             </form>
         </div>

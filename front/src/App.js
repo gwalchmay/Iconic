@@ -10,12 +10,14 @@ import Scenes from './components/Scenes.js';
 import Login from './components/Login.js';
 import Admin from './components/Admin.js';
 import PrivateRoute from './components/PrivateRoute.js';
+import BurgerMenu from './components/BurgerMenu.js';
 
 function App() {
   return (
     <Router>
       <div className='appFlexContainer'>
         <Navbar />
+        <BurgerMenu />
         <Switch>
           <Route exact path="/">
             <Home />

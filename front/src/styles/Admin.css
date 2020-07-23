@@ -1,4 +1,4 @@
-.adminBg{
+.adminBg {
     width: 100%;
     text-align: center;
 }
@@ -15,7 +15,15 @@
     flex-direction: column;
 }
 
-.adminForm{
+.adminForm {
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+    .adminFlexContainer{
+        flex-direction: column;
+        width: 95%;
+        align-items: center;
+    }
 }

@@ -1,0 +1,36 @@
+.burgerMenu {
+    background-color: #ED1D24;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 100vh;
+    font-size: 2rem;
+}
+
+.burgerLink:link {
+    color: white;
+    text-decoration: none;
+}
+
+.burgerLink:visited {
+    color: white;
+}
+
+.logoburger {
+    width: 50px;
+    height: 50px;
+}
+
+.phoneTitle {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .phoneTitle {
+        display: flex;
+        height: 100px;
+    }
+}
