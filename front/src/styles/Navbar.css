@@ -5,3 +5,27 @@
     position: relative;
     height: 100vh;
 }
+
+.navbarSubtitle{
+    color: white;
+    text-align: center;
+}
+
+.navbarList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: space-evenly;
+    height: 50%;
+    font-size: 1.2rem;
+}
+
+.navbarList a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbarLogo {
+    max-width: 240px;
+}

@@ -9,24 +9,27 @@ function Navbar() {
         <div className='navbarBg'>
             <Drawer variant='permanent' anchor='left'>
                 <Link to="/">
-                    <img src={Logo} alt='logo' />
+                    <img src={Logo} alt='logo' className='navbarLogo' />
                 </Link>
-                <Link to="/heroes">
-                    Heroes
+                <h5 className='navbarSubtitle'>Scenes from the super-world</h5>
+                <div className='navbarList'>
+                    <Link to="/heroes">
+                        Heroes
                 </Link>
-                <Link to="/ages">
-                    Ages
+                    <Link to="/ages">
+                        Ages
                 </Link>
                 Browse by category:
-                <Link to="/badass">
-                    Badass
+                <Link to="/scenes/badass">
+                        Badass
                 </Link>
-                <Link to="/funny">
-                    Funny
+                    <Link to="/scenes/funny">
+                        Funny
                 </Link>
-                <Link to="/inspirationnal">
-                    Inspirationnal
+                    <Link to="/scenes/inspirationnal">
+                        Inspirationnal
                 </Link>
+                </div>
             </Drawer>
         </div>
     )

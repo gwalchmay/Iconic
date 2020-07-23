@@ -5,6 +5,8 @@ import Navbar from './components/Navbar.js';
 import Home from './components/Home.js';
 import Heroes from './components/Heroes.js';
 import Ages from './components/Ages.js';
+import SceneFull from './components/SceneFull.js';
+import Scenes from './components/Scenes.js';
 import Admin from './components/Admin.js';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route path="/scenes/:tag" component={Scenes} />
+          <Route path="/scene/:id" component={SceneFull} />
           <Route path="/heroes">
             <Heroes />
           </Route>
