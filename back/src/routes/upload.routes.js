@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const multer = require('multer');
 const { connection } = require('../../connection');
+const passport = require('../../helpers/passport');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -15,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }).single('file');
 
 
-router.post('/', (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             res.status(500).json(err);
@@ -24,7 +25,6 @@ router.post('/', (req, res) => {
             connection.query('INSERT INTO picture SET ?', filename, (errTwo) => {
                 if (errTwo) {
                     res.status(500).send("Erreur lors de l'ajout de l'image en base de données");
-                    console.log(errTwo.message);
                 } else {
                     connection.query('SELECT * FROM picture WHERE filename= ?', filename.filename, (errThree, pic) => {
                         if (errThree) {
